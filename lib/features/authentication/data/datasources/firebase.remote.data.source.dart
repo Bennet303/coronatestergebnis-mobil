@@ -4,24 +4,29 @@ import 'package:coronatestergebnis_app/features/authentication/data/models/user.
 import 'package:firebase_auth/firebase_auth.dart';
 
 import './login.remote.data.source.dart';
+
 class FirebaseRemoteDataSource extends LoginRemoteDataSource {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   UserModel getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+    final user = auth.currentUser;
+    final name = auth.currentUser?.displayName?.split(';') ?? ["", ""];
+    return new UserModel(
+      email: user?.email ?? "",
+      firstname: name[0],
+      lastname: name[1],
+    );
   }
 
   @override
   bool isLoggedIn() {
-    // TODO: implement isLoggedIn
-    throw UnimplementedError();
+    return auth.currentUser != null;
   }
 
   @override
   void login(Credentials credentials) {
-    // TODO: implement login
+    auth.signInWithEmailAndPassword(
+        email: credentials.email, password: credentials.password);
   }
-
 }

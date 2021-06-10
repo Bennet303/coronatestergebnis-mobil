@@ -1,9 +1,9 @@
 import '../models/user.model.dart';
 import '../../domain/entities/credentials.dart';
+import 'package:dartz/dartz.dart';
 
 abstract class LoginRemoteDataSource {
-  void login(Credentials credentials);
-  bool isLoggedIn();
-  UserModel getCurrentUser();
+  Future login(Credentials credentials);
+  Future<bool> isLoggedIn();
+  Future<UserModel> getCurrentUser();
 }
-  
