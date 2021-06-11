@@ -9,7 +9,7 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
-  UserModel getCurrentUser() {
+  Future<UserModel> getCurrentUser() async {
     final user = auth.currentUser;
     final name = auth.currentUser?.displayName?.split(';') ?? ["", ""];
     return new UserModel(
@@ -20,12 +20,12 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
   }
 
   @override
-  bool isLoggedIn() {
+  Future<bool> isLoggedIn() async {
     return auth.currentUser != null;
   }
 
   @override
-  void login(Credentials credentials) {
+  Future<void> login(Credentials credentials) async {
     auth.signInWithEmailAndPassword(
         email: credentials.email, password: credentials.password);
   }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "363944258891",
+    "project_id": "coronatestergebnis-app",
+    "storage_bucket": "coronatestergebnis-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363944258891:android:1c7940b7a0b6e314e18cce",
+        "android_client_info": {
+          "package_name": "de.bennet303.coronatestergebnisapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363944258891-g23b1veimfvb9099968g43t5jtsm28ht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6qfOapPYXFXWTwXvIeBDlUd6nQGq5NBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363944258891-g23b1veimfvb9099968g43t5jtsm28ht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
