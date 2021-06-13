@@ -19,7 +19,9 @@ class AuthenticationBloc
       final failureOrSuccess = await signInUsecase(event.credentials);
       yield failureOrSuccess.fold(
         (failure) => AuthenticationFailed(failure.message),
-        (r) => SignInSuccessful(),
+        (r) {
+          return SignInSuccessful();
+        },
       );
     }
   }

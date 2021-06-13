@@ -16,6 +16,26 @@ class RegisterPage extends StatelessWidget {
         Column(
           //TODO: list view
           children: [
+            Container(
+              margin: EdgeInsets.only(top: 20, bottom: 80),
+              width: MediaQuery.of(context).size.width,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Registrieren.',
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                  ],
+                ),
+              ),
+            ),
             TextInputField(
               controller: _firstnameController,
               hint: 'Vorname',

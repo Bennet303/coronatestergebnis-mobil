@@ -26,7 +26,7 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
 
   @override
   Future<void> login(Credentials credentials) async {
-    auth.signInWithEmailAndPassword(
+    await auth.signInWithEmailAndPassword(
         email: credentials.email, password: credentials.password);
   }
 }

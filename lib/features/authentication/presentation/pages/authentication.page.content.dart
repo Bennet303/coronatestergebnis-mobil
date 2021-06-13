@@ -1,6 +1,5 @@
 import 'package:coronatestergebnis_app/features/authentication/presentation/pages/register.page.dart';
 import 'package:coronatestergebnis_app/features/authentication/presentation/pages/sign.in.page.dart';
-import 'package:coronatestergebnis_app/features/authentication/presentation/widgets/text.input.field.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationPageContent extends StatefulWidget {
