@@ -15,12 +15,14 @@ class AuthenticationPage extends StatelessWidget {
       child: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is SignInSuccessful) {
+            final route = MaterialPageRoute(
+              builder: (context) => HomePage(),
+            );
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
+              route,
             );
+            // Navigator.removeRoute(context, route);
           }
         },
         child: Scaffold(

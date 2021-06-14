@@ -5,8 +5,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Home'),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          enableFeedback: false,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.qr_code), label: 'Klasseneinschreibung'),
+            BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menü'),
+          ],
+        ),
+      ),
     );
   }
 }

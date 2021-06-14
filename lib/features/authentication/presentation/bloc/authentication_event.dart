@@ -9,4 +9,16 @@ class AuthenticationSignIn extends AuthenticationEvent {
   AuthenticationSignIn(this.credentials);
 }
 
-class AuthenticationRegister extends AuthenticationEvent {}
+class AuthenticationRegister extends AuthenticationEvent {
+  final Credentials credentials;
+  final String firstname;
+  final String lastname;
+
+  AuthenticationRegister({
+    required this.credentials,
+    required this.firstname,
+    required this.lastname,
+  });
+}
+
+class AuthenticationInit extends AuthenticationEvent {}

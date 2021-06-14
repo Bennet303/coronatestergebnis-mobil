@@ -1,3 +1,4 @@
+import 'package:coronatestergebnis_app/features/authentication/data/models/user.model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
@@ -18,6 +19,27 @@ class LoginRepositoryImpl extends LoginRepository {
       return Right(await dataSource.login(credentials));
     } catch (e) {
       return Left(AuthFailure('Login failure'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> register(
+      {required Credentials credentials,
+      required String firstname,
+      required String lastname}) async {
+    try {
+      return Right(await dataSource.register(credentials, firstname, lastname));
+    } catch (e) {
+      return Left(AuthFailure('Register failure'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> getCurrentUser() async {
+    try {
+      return Right(await dataSource.getCurrentUser());
+    } catch (e) {
+      return Left(AuthFailure('No User logged in'));
     }
   }
 }
