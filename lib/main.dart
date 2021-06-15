@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/dependency.injector.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'features/home/presentation/pages/home.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           future: _initialization,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return AuthenticationPage();
+              return HomePage(); //AuthenticationPage();
             }
             return Container();
           },
