@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coronatestergebnis_app/features/home/domain/entities/child.dart';
 
 abstract class TestResult {}
 
-class PositiveTestResult {
+class PositiveTestResult extends TestResult {
   List<Child> affectedChilds = [];
+  Timestamp timestamp;
 
-  PositiveTestResult(this.affectedChilds);
+  PositiveTestResult({required this.affectedChilds, required this.timestamp});
 }
 
-class NegativeTestResult {}
+class NegativeTestResult extends TestResult {}

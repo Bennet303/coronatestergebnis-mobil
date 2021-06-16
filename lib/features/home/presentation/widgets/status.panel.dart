@@ -12,6 +12,7 @@ class StatusPanel extends StatelessWidget {
       required this.color,
       required this.text})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(

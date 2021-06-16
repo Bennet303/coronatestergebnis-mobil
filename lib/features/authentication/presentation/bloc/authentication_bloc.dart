@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:coronatestergebnis_app/features/authentication/data/models/user.model.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/entities/credentials.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/check.authstatus.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/register.dart';
@@ -26,14 +27,16 @@ class AuthenticationBloc
     if (event is AuthenticationInit) {
       final failureOrUserModel = await checkAuthstatusUsecase();
       if (failureOrUserModel.isRight()) {
-        yield SignInSuccessful();
+        yield UserSignedIn(failureOrUserModel.getOrElse(() {
+          throw Error();
+        }));
       }
     } else if (event is AuthenticationSignIn) {
-      final failureOrSuccess = await signInUsecase(event.credentials);
-      yield failureOrSuccess.fold(
+      final failureOrUserModel = await signInUsecase(event.credentials);
+      yield failureOrUserModel.fold(
         (failure) => AuthenticationFailed(failure.message),
         (r) {
-          return SignInSuccessful();
+          return UserSignedIn(r);
         },
       );
     } else if (event is AuthenticationRegister) {

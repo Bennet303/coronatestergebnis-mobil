@@ -11,6 +11,10 @@ class AuthenticationFailed extends AuthenticationState {
   AuthenticationFailed(this.message);
 }
 
-class SignInSuccessful extends AuthenticationState {}
+class UserSignedIn extends AuthenticationState {
+  final UserModel user;
+
+  UserSignedIn(this.user);
+}
 
 class RegisterSuccessful extends AuthenticationState {}

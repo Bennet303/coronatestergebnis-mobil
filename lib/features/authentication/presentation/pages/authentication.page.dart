@@ -14,7 +14,7 @@ class AuthenticationPage extends StatelessWidget {
       create: (context) => AuthenticationPageBloc(),
       child: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
-          if (state is SignInSuccessful) {
+          if (state is UserSignedIn) {
             final route = MaterialPageRoute(
               builder: (context) => HomePage(),
             );

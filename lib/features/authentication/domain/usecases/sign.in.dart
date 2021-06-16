@@ -1,3 +1,4 @@
+import 'package:coronatestergebnis_app/features/authentication/data/models/user.model.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failure.dart';
 import '../repositories/login.repository.dart';
@@ -8,7 +9,8 @@ class SignInUsecase {
 
   SignInUsecase(this._repository);
 
-  Future<Either<Failure, void>> call(Credentials credentials) async {
-    return await _repository.login(credentials);
+  Future<Either<Failure, UserModel>> call(Credentials credentials) async {
+    await _repository.login(credentials);
+    return _repository.getCurrentUser();
   }
 }

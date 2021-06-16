@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/entities/credentials.dart';
 
 import 'package:coronatestergebnis_app/features/authentication/data/models/user.model.dart';
+import 'package:coronatestergebnis_app/features/home/domain/entities/child.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import './login.remote.data.source.dart';
@@ -17,10 +18,24 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
     if (user == null) throw Exception('No user is logged in');
 
     final name = auth.currentUser?.displayName?.split(';') ?? ["", ""];
+
+    final childQuery = await store
+        .collection('students')
+        .where('userID', isEqualTo: user.email)
+        .get();
+    final List<Child> childs = childQuery.docs
+        .map((c) => Child(
+            id: c.id,
+            classID: c.get('classID'),
+            firstname: c.get('firstname'),
+            lastname: c.get('lastname')))
+        .toList();
+
     return new UserModel(
       email: user.email ?? "",
       firstname: name[0],
       lastname: name[1],
+      childs: childs,
     );
   }
 

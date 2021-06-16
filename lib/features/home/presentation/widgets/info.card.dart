@@ -18,17 +18,15 @@ class InfoCard extends StatelessWidget {
         padding: EdgeInsets.all(16),
         width: MediaQuery.of(context).size.width,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: Text(
-                content.headline,
-                textAlign: TextAlign.left,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
+            Text(
+              content.headline,
+              textAlign: TextAlign.left,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 5,

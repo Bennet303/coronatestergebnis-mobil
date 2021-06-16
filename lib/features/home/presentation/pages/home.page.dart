@@ -1,8 +1,10 @@
+import 'package:coronatestergebnis_app/features/home/presentation/pages/status.page.dart';
 import 'package:coronatestergebnis_app/features/home/presentation/widgets/info.card.dart';
 import 'package:coronatestergebnis_app/features/home/presentation/widgets/info.display.dart';
 import 'package:coronatestergebnis_app/features/home/presentation/widgets/status.panel.dart';
 import 'package:coronatestergebnis_app/features/home/presentation/widgets/tab.navigation.bar.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 60, bottom: 80),
+                  margin: EdgeInsets.only(top: 60, bottom: 50),
                   width: MediaQuery.of(context).size.width,
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -39,7 +41,13 @@ class HomePage extends StatelessWidget {
                 StatusPanel(
                   text: 'Kein positives Testergebnis gemeldet!',
                   color: Colors.green,
-                  onPressed: () {},
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                      context: context,
+                      builder: (context) => StatusPage(),
+                      isDismissible: true,
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 50,

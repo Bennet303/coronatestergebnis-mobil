@@ -1,4 +1,5 @@
 import 'package:coronatestergebnis_app/features/authentication/presentation/pages/authentication.page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => _authenticationBloc,
       child: MaterialApp(
+        // localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        //   DefaultMaterialLocalizations.delegate,
+        //   DefaultWidgetsLocalizations.delegate,
+        //   DefaultCupertinoLocalizations.delegate,
+        // ],
         title: 'Flutter Demo',
         theme: ThemeData.dark(),
         home: FutureBuilder(
