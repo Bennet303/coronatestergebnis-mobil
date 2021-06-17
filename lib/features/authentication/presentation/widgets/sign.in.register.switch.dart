@@ -1,4 +1,3 @@
-import 'package:coronatestergebnis_app/features/authentication/presentation/bloc/authentication.page_bloc/authentication_page_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,24 +13,16 @@ class _SignInRegisterSwitchState extends State<SignInRegisterSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationPageBloc, AuthenticationPageState>(
-      builder: (context, state) => FlutterToggleTab(
-        width: 80,
-        borderRadius: 18,
-        selectedLabelIndex: (i) {},
-        initialIndex: _stateToIndex(state),
-        unSelectedTextStyle: TextStyle(color: Colors.black),
-        selectedTextStyle: TextStyle(color: Colors.white),
-        labels: ["Anmelden", "Registrieren"],
-      ),
-    );
-  }
-
-  int _stateToIndex(AuthenticationPageState state) {
-    if (state is AuthenticationSignInPage)
-      return 0;
-    else if (state is AuthenticationRegisterPage) return 1;
-    throw Exception('Invalid State');
+    return Container();
+    // FlutterToggleTab(
+    //     width: 80,
+    //     borderRadius: 18,
+    //     selectedLabelIndex: (i) {},
+    //     initialIndex: _stateToIndex(state),
+    //     unSelectedTextStyle: TextStyle(color: Colors.black),
+    //     selectedTextStyle: TextStyle(color: Colors.white),
+    //     labels: ["Anmelden", "Registrieren"],
+    //   );
   }
 }
 
