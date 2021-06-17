@@ -27,14 +27,15 @@ class TestResultRepositoryImpl extends TestResultRepository {
     final user = failureOrUser.getOrElse(() => throw Error());
 
     List<Child> affectedChilds = [];
-    user.childs.forEach((child) async {
+    for (int i = 0; i < user.childs.length; i++) {
+      Child child = user.childs[i];
       final classHasPositiveTestResult =
           await testResultDataSource.getTestResultForClass(child.classID);
       if (classHasPositiveTestResult) affectedChilds.add(child);
-    });
+    }
 
     if (affectedChilds.length == 0) {
-      return Right(NegativeTestResult());
+      return Right(NegativeTestResult(Timestamp.now()));
     } else {
       return Right(
         PositiveTestResult(

@@ -1,4 +1,6 @@
-class Child {
+import 'package:equatable/equatable.dart';
+
+class Child extends Equatable{
   final String firstname;
   final String lastname;
   final String id;
@@ -9,4 +11,7 @@ class Child {
       required this.id,
       required this.firstname,
       required this.lastname});
+
+  @override
+  List<Object?> get props => [id];
 }

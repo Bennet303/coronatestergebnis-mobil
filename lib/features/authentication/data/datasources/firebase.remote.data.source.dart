@@ -17,10 +17,13 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
 
     if (user == null) throw Exception('No user is logged in');
 
+    final userQuery =
+        await store.collection('usersMobile').doc(user.email).get();
+
     final name = auth.currentUser?.displayName?.split(';') ?? ["", ""];
 
     final childQuery = await store
-        .collection('students')
+        .collection('student')
         .where('userID', isEqualTo: user.email)
         .get();
     final List<Child> childs = childQuery.docs
@@ -33,8 +36,8 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
 
     return new UserModel(
       email: user.email ?? "",
-      firstname: name[0],
-      lastname: name[1],
+      firstname: userQuery.get('firstname'),
+      lastname: userQuery.get('lastname'),
       childs: childs,
     );
   }

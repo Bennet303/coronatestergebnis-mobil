@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           future: _initialization,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return HomePage(); //AuthenticationPage();
+              return AuthenticationPage(); //AuthenticationPage();
             }
             return Container();
           },

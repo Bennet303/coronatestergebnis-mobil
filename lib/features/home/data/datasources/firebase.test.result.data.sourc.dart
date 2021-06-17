@@ -7,7 +7,7 @@ class FirebaseTestResultDataSource extends TestResultDataSource {
   @override
   Future<bool> getTestResultForClass(String classID) async {
     final result = await store
-        .collection('notifications')
+        .collection('notification')
         .where('classID', isEqualTo: classID)
         .get();
 
