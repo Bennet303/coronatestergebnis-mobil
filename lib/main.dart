@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/dependency.injector.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'features/home/presentation/pages/home.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +23,6 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => _authenticationBloc,
       child: MaterialApp(
-        // localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-        //   DefaultMaterialLocalizations.delegate,
-        //   DefaultWidgetsLocalizations.delegate,
-        //   DefaultCupertinoLocalizations.delegate,
-        // ],
         title: 'Flutter Demo',
         theme: ThemeData.dark(),
         home: FutureBuilder(

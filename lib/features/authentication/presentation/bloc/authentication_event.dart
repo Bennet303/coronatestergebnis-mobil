@@ -22,3 +22,5 @@ class AuthenticationRegister extends AuthenticationEvent {
 }
 
 class AuthenticationInit extends AuthenticationEvent {}
+
+class AuthenticationRefreshUser extends AuthenticationEvent {}

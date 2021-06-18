@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
 class SignInRegisterSwitch extends StatefulWidget {
   @override
