@@ -42,6 +42,13 @@ class LoginRepositoryImpl extends LoginRepository {
       return Left(AuthFailure('No User logged in'));
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await dataSource.signOut();
+    } catch (e) {}
+  }
 }
 
 class AuthFailure extends Failure {

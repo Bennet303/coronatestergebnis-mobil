@@ -7,4 +7,5 @@ abstract class LoginRemoteDataSource {
   Future<UserModel> getCurrentUser();
   Future<void> register(
       Credentials credentials, String firstname, String lastname);
+  Future<void> signOut();
 }

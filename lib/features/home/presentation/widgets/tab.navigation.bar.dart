@@ -16,12 +16,13 @@ class TabNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      enableFeedback: false,
+      //enableFeedback: false,
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(
             icon: Icon(Icons.qr_code), label: 'Klasseneinschreibung'),
-        BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menü'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.exit_to_app), label: 'Abmelden'),
       ],
     );
   }

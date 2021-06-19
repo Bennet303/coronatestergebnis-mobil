@@ -5,6 +5,7 @@ import 'package:coronatestergebnis_app/features/authentication/domain/entities/c
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/check.authstatus.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/register.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/sign.in.dart';
+import 'package:coronatestergebnis_app/features/authentication/domain/usecases/sign.out.dart';
 import 'package:meta/meta.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -14,8 +15,10 @@ class AuthenticationBloc
   final SignInUsecase signInUsecase;
   final RegisterUsecase registerUsecase;
   final CheckAuthstatusUsecase checkAuthstatusUsecase;
+  final SignOutUsecase signOutUsecase;
 
   AuthenticationBloc({
+    required this.signOutUsecase,
     required this.signInUsecase,
     required this.registerUsecase,
     required this.checkAuthstatusUsecase,
@@ -49,6 +52,9 @@ class AuthenticationBloc
         (failure) => AuthenticationFailed(failure.message),
         (r) => RegisterSuccessful(),
       );
+    } else if (event is AuthenticationSignOut) {
+      await signOutUsecase();
+      yield AuthenticationInitial();
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/dependency.injector.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'features/authentication/presentation/pages/sign.in.page.dart';
 import 'features/home/presentation/pages/home.page.dart';
 
 void main() async {
@@ -23,23 +24,34 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _authenticationBloc,
-      child: MaterialApp(
-        // localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-        //   DefaultMaterialLocalizations.delegate,
-        //   DefaultWidgetsLocalizations.delegate,
-        //   DefaultCupertinoLocalizations.delegate,
-        // ],
-        title: 'Flutter Demo',
-        theme: ThemeData.dark(),
-        home: FutureBuilder(
-          future: _initialization,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return AuthenticationPage(); //AuthenticationPage();
-            }
-            return Container();
-          },
-        ),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData.dark(),
+            home: BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                if (state is AuthenticationInitial) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AuthenticationPage()),
+                    (Route<dynamic> route) => false,
+                  );
+                }
+              },
+              child: FutureBuilder(
+                future: _initialization,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return AuthenticationPage(); //AuthenticationPage();
+                  }
+                  return Container();
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }

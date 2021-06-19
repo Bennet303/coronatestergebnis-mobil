@@ -11,4 +11,5 @@ abstract class LoginRepository {
       required String firstname,
       required String lastname});
   Future<Either<Failure, UserModel>> getCurrentUser();
+  Future<void> signOut();
 }

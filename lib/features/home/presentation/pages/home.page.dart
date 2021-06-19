@@ -35,7 +35,28 @@ class _HomePageState extends State<HomePage> {
           currentIndex: selectedPage,
           onTap: (index) {
             setState(() {
-              selectedPage = index;
+              if (index == 2) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Abmelden'),
+                        content: Text('Möchten Sie sich wirklich abmelden?'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                BlocProvider.of<AuthenticationBloc>(context)
+                                    .add(AuthenticationSignOut());
+                              },
+                              child: Text('Bestätigen')),
+                          TextButton(
+                              onPressed: () {}, child: Text('Abbrechen')),
+                        ],
+                      );
+                    });
+              } else {
+                selectedPage = index;
+              }
             });
           },
         ),
@@ -56,7 +77,7 @@ class HomeStatusPage extends StatelessWidget {
       create: (context) => injector<TestResultBloc>()..add(GetTestResult()),
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
-          if (!(state is UserSignedIn)) throw Exception('Not authenitcated!');
+          if (!(state is UserSignedIn)) return Container();
           return SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
