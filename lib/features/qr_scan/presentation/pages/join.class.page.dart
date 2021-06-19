@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class JoinClassPage extends StatelessWidget {
-  static final _formKey = GlobalKey<FormState>();
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _firstnameController =
       new TextEditingController();

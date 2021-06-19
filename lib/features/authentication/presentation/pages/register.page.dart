@@ -14,7 +14,7 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _lastnameController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
 
-  static final _formKey = GlobalKey<FormState>();
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

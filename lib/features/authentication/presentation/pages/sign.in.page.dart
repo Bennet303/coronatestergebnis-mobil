@@ -10,7 +10,7 @@ class SignInPage extends StatelessWidget {
   final TextEditingController _passwordController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
 
-  static final _formKey = GlobalKey<FormState>();
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,23 @@ class SignInPage extends StatelessWidget {
                 },
                 controller: _emailController,
                 hint: 'Email',
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return "Bitte geben Sie Ihre Email ein";
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               TextInputField(
                 onFieldSubmitted: (_) {
                   submit(context);
+                },
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return "Bitte geben Sie Ihr Passwort ein";
+                  }
+                  return null;
                 },
                 controller: _passwordController,
                 hint: 'Passwort',
@@ -82,13 +94,14 @@ class SignInPage extends StatelessWidget {
   }
 
   void submit(BuildContext context) {
-    BlocProvider.of<AuthenticationBloc>(context).add(
-      AuthenticationSignIn(
-        Credentials(
-          email: _emailController.value.text,
-          password: _passwordController.value.text,
+    if (_formKey.currentState!.validate())
+      BlocProvider.of<AuthenticationBloc>(context).add(
+        AuthenticationSignIn(
+          Credentials(
+            email: _emailController.value.text,
+            password: _passwordController.value.text,
+          ),
         ),
-      ),
-    );
+      );
   }
 }

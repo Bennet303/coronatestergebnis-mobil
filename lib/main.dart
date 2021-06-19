@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/dependency.injector.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'features/authentication/presentation/pages/sign.in.page.dart';
-import 'features/home/presentation/pages/home.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +15,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   final AuthenticationBloc _authenticationBloc = injector<AuthenticationBloc>()
     ..add(AuthenticationInit());
 
@@ -29,21 +26,15 @@ class MyApp extends StatelessWidget {
         builder: (context) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: ThemeData.dark(),
+            theme: ThemeData.dark().copyWith(accentColor: Colors.white),
             home: BlocListener<AuthenticationBloc, AuthenticationState>(
-                listener: (context, state) {
-                  if (state is AuthenticationInitial) {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AuthenticationPage()),
-                      (Route<dynamic> route) => false,
-                    );
-                  }
-                },
-                child: AuthenticationPage() //AuthenticationPage();
-
-                ),
+              listener: (context, state) {
+                if (state is AuthenticationInitial) {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                }
+              },
+              child: AuthenticationPage(), //AuthenticationPage();
+            ),
           );
         },
       ),
