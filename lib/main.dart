@@ -11,6 +11,7 @@ import 'features/home/presentation/pages/home.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   init();
   runApp(MyApp());
 }
@@ -30,26 +31,19 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: ThemeData.dark(),
             home: BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-                if (state is AuthenticationInitial) {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AuthenticationPage()),
-                    (Route<dynamic> route) => false,
-                  );
-                }
-              },
-              child: FutureBuilder(
-                future: _initialization,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return AuthenticationPage(); //AuthenticationPage();
+                listener: (context, state) {
+                  if (state is AuthenticationInitial) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AuthenticationPage()),
+                      (Route<dynamic> route) => false,
+                    );
                   }
-                  return Container();
                 },
-              ),
-            ),
+                child: AuthenticationPage() //AuthenticationPage();
+
+                ),
           );
         },
       ),

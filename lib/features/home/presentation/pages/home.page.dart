@@ -50,7 +50,9 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Text('Bestätigen')),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             child: Text('Abbrechen'),
                           ),
                         ],
@@ -109,15 +111,23 @@ class HomeStatusPage extends StatelessWidget {
                   BlocBuilder<TestResultBloc, TestResultState>(
                       builder: (context, testResultState) {
                     bool testIsPositive = false;
+                    bool isLoading = true;
                     if (testResultState is TestResultLoaded) {
                       testIsPositive =
                           testResultState.testResult is PositiveTestResult;
+                      isLoading = false;
                     }
                     return StatusPanel(
-                      text: testIsPositive
-                          ? 'Positives Testergebnis gemeldet!'
-                          : 'Kein positives Testergebnis gemeldet!',
-                      color: testIsPositive ? Colors.red : Colors.green,
+                      text: isLoading
+                          ? 'Lädt...'
+                          : testIsPositive
+                              ? 'Positives Testergebnis gemeldet!'
+                              : 'Kein positives Testergebnis gemeldet!',
+                      color: isLoading
+                          ? Colors.grey
+                          : testIsPositive
+                              ? Colors.red
+                              : Colors.green,
                       onPressed: () {
                         showCupertinoModalBottomSheet(
                           context: context,
@@ -137,14 +147,24 @@ class HomeStatusPage extends StatelessWidget {
                     title: 'Vorgehen bei einem positivem Testergebnis?',
                     infoCards: [
                       InfoCardContent(
-                        headline: '1. Lassen Sie Ihr Kind testen',
+                        headline: '1. Quarantäne',
                         body:
-                            'Sorgen Sie dafür, dass ihr Kind unverzüglich mittels eines PCR-Tests auf COVID-19 getestet wird.',
+                            'Sorgen Sie dafür, dass sich Ihr Kind bis zum Ergebnis der individuellen Tests in Quarantäne begibt.',
                       ),
                       InfoCardContent(
-                        headline: '2. Ergebnis melden',
+                        headline: '2. Individualtest durchführen',
                         body:
-                            'Geben Sie das Ergebnis des PCR-Tests nach Erhalt an den Klassenlehrer weiter.',
+                            'Testen Sie Ihr Kind mit den Ihnen zur Verfügungen gestellten COV19-Test.',
+                      ),
+                      InfoCardContent(
+                        headline: '3. Teststäbchen in der Schule abgeben',
+                        body:
+                            'Bringen sie das verwendete Teststäbchen zur Sammelstelle in der Schule.',
+                      ),
+                      InfoCardContent(
+                        headline: '4. Auswertung der Individualtests',
+                        body:
+                            'Die Individualtests werden dann anschließend vom Labor ausgewertet. Über das Ergebnis werden Sie dann einzeln vom Klassenlehrer informiert.',
                       )
                     ],
                   ),

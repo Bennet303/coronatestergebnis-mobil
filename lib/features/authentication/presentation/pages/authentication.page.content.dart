@@ -22,17 +22,21 @@ class _AuthenticationPageContentState extends State<AuthenticationPageContent> {
           },
           controller: _pageController,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.1,
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.1,
+                    vertical: 60),
+                child: SignInPage(),
               ),
-              child: SignInPage(),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.1,
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.1,
+                    vertical: 60),
+                child: RegisterPage(),
               ),
-              child: RegisterPage(),
             ),
           ],
         ),

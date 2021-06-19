@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class JoinClassPage extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _firstnameController =
       new TextEditingController();
@@ -58,10 +58,12 @@ class JoinClassPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextInputField(
+                          onFieldSubmitted: (_) {},
                           controller: _firstnameController,
                           hint: 'Vorname des Schülers'),
                       SizedBox(height: 20),
                       TextInputField(
+                          onFieldSubmitted: (_) {},
                           controller: _lastnameController,
                           hint: 'Nachname des Schülers'),
                       SizedBox(height: 30),
@@ -70,7 +72,7 @@ class JoinClassPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: 50,
                           child: Center(
-                            child: Text('Anmelden'),
+                            child: Text('Einschreiben'),
                           ),
                         ),
                         onPressed: () {},

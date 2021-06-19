@@ -5,10 +5,12 @@ class TextInputField extends StatelessWidget {
   final String hint;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final Function(String?) onFieldSubmitted;
 
   const TextInputField(
       {Key? key,
       required this.controller,
+      required this.onFieldSubmitted,
       required this.hint,
       this.validator,
       this.obscureText = false})
@@ -17,6 +19,7 @@ class TextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onFieldSubmitted,
       controller: controller,
       validator: validator,
       obscureText: obscureText,

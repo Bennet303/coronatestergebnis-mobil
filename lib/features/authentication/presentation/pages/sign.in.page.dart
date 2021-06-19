@@ -10,7 +10,7 @@ class SignInPage extends StatelessWidget {
   final TextEditingController _passwordController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +46,17 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _emailController,
                 hint: 'Email',
               ),
               SizedBox(height: 20),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _passwordController,
                 hint: 'Passwort',
                 obscureText: true,
@@ -58,14 +64,7 @@ class SignInPage extends StatelessWidget {
               SizedBox(height: 30),
               PrimaryButton(
                 onPressed: () {
-                  BlocProvider.of<AuthenticationBloc>(context).add(
-                    AuthenticationSignIn(
-                      Credentials(
-                        email: _emailController.value.text,
-                        password: _passwordController.value.text,
-                      ),
-                    ),
-                  );
+                  submit(context);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -78,6 +77,17 @@ class SignInPage extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  void submit(BuildContext context) {
+    BlocProvider.of<AuthenticationBloc>(context).add(
+      AuthenticationSignIn(
+        Credentials(
+          email: _emailController.value.text,
+          password: _passwordController.value.text,
+        ),
       ),
     );
   }

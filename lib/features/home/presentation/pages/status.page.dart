@@ -30,7 +30,11 @@ class StatusPage extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.3,
-                color: testIsPositive ? Colors.red : Colors.green,
+                color: isLoading
+                    ? Colors.grey
+                    : testIsPositive
+                        ? Colors.red
+                        : Colors.green,
                 child: Stack(
                   children: [
                     Positioned(

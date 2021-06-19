@@ -24,7 +24,6 @@ class AuthenticationPage extends StatelessWidget {
       },
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(vertical: 60),
           child: Stack(
             children: [
               Positioned.fill(child: AuthenticationPageContent()),
@@ -40,6 +39,7 @@ class AuthenticationPage extends StatelessWidget {
             ],
           ),
         ),
+        //  ),
       ),
     );
   }

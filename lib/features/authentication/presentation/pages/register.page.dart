@@ -14,7 +14,7 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _lastnameController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,21 +46,33 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _firstnameController,
                 hint: 'Vorname',
               ),
               SizedBox(height: 20),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _lastnameController,
                 hint: 'Nachname',
               ),
               SizedBox(height: 20),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _emailController,
                 hint: 'Email',
               ),
               SizedBox(height: 20),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _passwordController,
                 hint: 'Passwort',
                 obscureText: true,
@@ -73,6 +85,9 @@ class RegisterPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextInputField(
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
                 controller: _passwordRepeatController,
                 hint: 'Passwort wiederholen',
                 obscureText: true,
@@ -88,18 +103,7 @@ class RegisterPage extends StatelessWidget {
               ),
               PrimaryButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    BlocProvider.of<AuthenticationBloc>(context).add(
-                      AuthenticationRegister(
-                        credentials: Credentials(
-                          email: _emailController.value.text,
-                          password: _passwordController.value.text,
-                        ),
-                        firstname: _firstnameController.value.text,
-                        lastname: _lastnameController.value.text,
-                      ),
-                    );
-                  }
+                  submit(context);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -114,5 +118,20 @@ class RegisterPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void submit(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      BlocProvider.of<AuthenticationBloc>(context).add(
+        AuthenticationRegister(
+          credentials: Credentials(
+            email: _emailController.value.text,
+            password: _passwordController.value.text,
+          ),
+          firstname: _firstnameController.value.text,
+          lastname: _lastnameController.value.text,
+        ),
+      );
+    }
   }
 }
