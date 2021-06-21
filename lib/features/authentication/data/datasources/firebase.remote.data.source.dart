@@ -20,8 +20,6 @@ class FirebaseRemoteDataSource extends LoginRemoteDataSource {
     final userQuery =
         await store.collection('usersMobile').doc(user.email).get();
 
-    final name = auth.currentUser?.displayName?.split(';') ?? ["", ""];
-
     final childQuery = await store
         .collection('student')
         .where('userID', isEqualTo: user.email)

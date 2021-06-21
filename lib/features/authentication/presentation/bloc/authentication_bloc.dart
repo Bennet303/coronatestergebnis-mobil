@@ -5,7 +5,11 @@ import 'package:coronatestergebnis_app/features/authentication/domain/entities/c
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/check.authstatus.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/register.dart';
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/sign.in.dart';
+<<<<<<< HEAD
 import 'package:coronatestergebnis_app/features/authentication/domain/usecases/sign.out.dart';
+=======
+import 'package:equatable/equatable.dart';
+>>>>>>> main
 import 'package:meta/meta.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -27,7 +31,7 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
     AuthenticationEvent event,
   ) async* {
-    if (event is AuthenticationInit) {
+    if (event is AuthenticationInit || event is AuthenticationRefreshUser) {
       final failureOrUserModel = await checkAuthstatusUsecase();
       if (failureOrUserModel.isRight()) {
         yield UserSignedIn(failureOrUserModel.getOrElse(() {
