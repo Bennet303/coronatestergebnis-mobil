@@ -23,8 +23,6 @@ class AuthenticationRegister extends AuthenticationEvent {
 
 class AuthenticationInit extends AuthenticationEvent {}
 
-<<<<<<< HEAD
 class AuthenticationSignOut extends AuthenticationEvent {}
-=======
+
 class AuthenticationRefreshUser extends AuthenticationEvent {}
->>>>>>> main

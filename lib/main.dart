@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _authenticationBloc,
-<<<<<<< HEAD
       child: Builder(
         builder: (context) {
           return MaterialApp(
@@ -38,20 +37,6 @@ class MyApp extends StatelessWidget {
             ),
           );
         },
-=======
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData.dark(),
-        home: FutureBuilder(
-          future: _initialization,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return AuthenticationPage(); //AuthenticationPage();
-            }
-            return Container();
-          },
-        ),
->>>>>>> main
       ),
     );
   }
