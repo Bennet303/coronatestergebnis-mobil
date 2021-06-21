@@ -1,6 +1,7 @@
 import 'package:coronatestergebnis_app/features/home/domain/entities/child.dart';
+import 'package:equatable/equatable.dart';
 
-class User {
+class User extends Equatable {
   final String firstname;
   final String lastname;
   final String email;
@@ -12,4 +13,8 @@ class User {
       required this.firstname,
       required this.lastname,
       required this.email});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [firstname, lastname, email, childs];
 }

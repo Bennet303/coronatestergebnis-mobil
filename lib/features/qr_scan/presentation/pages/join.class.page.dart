@@ -89,58 +89,66 @@ class JoinClassPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Form(
-                    key: _formKey,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                      child: Column(
-                        children: [
-                          TextInputField(
-                              onFieldSubmitted: (_) {},
-                              controller: _firstnameController,
-                              hint: 'Vorname des Schülers'),
-                          SizedBox(height: 20),
-                          TextInputField(
-                              onFieldSubmitted: (_) {},
-                              controller: _lastnameController,
-                              hint: 'Nachname des Schülers'),
-                          SizedBox(height: 30),
-                          Builder(
-                            builder: (context) {
-                              return PrimaryButton(
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  height: 50,
-                                  child: Center(
-                                    child: Text('Einschreiben'),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  BlocProvider.of<JoinClassBloc>(context).add(
-                                    JoinClass(
-                                      qrCode: qrCode,
-                                      inputFirstname:
-                                          _firstnameController.value.text,
-                                      inputLastname:
-                                          _lastnameController.value.text,
-                                    ),
-                                  );
+                  Builder(builder: (context) {
+                    return Form(
+                      key: _formKey,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                        ),
+                        child: Column(
+                          children: [
+                            TextInputField(
+                                onFieldSubmitted: (_) {
+                                  submit(context);
                                 },
-                              );
-                            },
-                          )
-                        ],
+                                controller: _firstnameController,
+                                hint: 'Vorname des Schülers'),
+                            SizedBox(height: 20),
+                            TextInputField(
+                                onFieldSubmitted: (_) {
+                                  submit(context);
+                                },
+                                controller: _lastnameController,
+                                hint: 'Nachname des Schülers'),
+                            SizedBox(height: 30),
+                            Builder(
+                              builder: (context) {
+                                return PrimaryButton(
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                    height: 50,
+                                    child: Center(
+                                      child: Text('Einschreiben'),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    submit(context);
+                                  },
+                                );
+                              },
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  )
+                    );
+                  })
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void submit(BuildContext context) {
+    BlocProvider.of<JoinClassBloc>(context).add(
+      JoinClass(
+        qrCode: qrCode,
+        inputFirstname: _firstnameController.value.text,
+        inputLastname: _lastnameController.value.text,
       ),
     );
   }

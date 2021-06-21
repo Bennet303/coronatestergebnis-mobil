@@ -29,6 +29,7 @@ class AuthenticationBloc
     AuthenticationEvent event,
   ) async* {
     if (event is AuthenticationInit || event is AuthenticationRefreshUser) {
+      yield AuthenticationInitial();
       final failureOrUserModel = await checkAuthstatusUsecase();
       if (failureOrUserModel.isRight()) {
         yield UserSignedIn(failureOrUserModel.getOrElse(() {
